@@ -5,6 +5,9 @@
 
 # Copyright(c) 2014 OpenDomo Services SL. Licensed under GPL v3 or later
 
+PIDFILE="/var/opendomo/run/odvision.pid"
+CONFIGDIR="/etc/opendomo/vision"
+
 # Common video module vars
 if ! test -f "/etc/opendomo/videoConfVars.conf"; then
    cp /etc/opendomo/videoConfVars.conf.orig /etc/opendomo/videoConfVars.conf
