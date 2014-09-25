@@ -25,9 +25,6 @@ do_daemon() {
 				echo "DEVICE=$i" >> $CONFIGDIR/$cname.info
 				echo "TYPE=local" >> $CONFIGDIR/$cname.info
 			fi
-		else
-			#Aborting
-			exit 1
 		fi
 	done
 	
