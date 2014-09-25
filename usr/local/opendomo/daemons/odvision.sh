@@ -4,18 +4,40 @@
 DESC="Vision"
 PIDFILE="/var/opendomo/run/odvision.pid"
 REFRESH="2"
+CONFIGDIR="/etc/opendomo/vision"
 
 #This is the actual daemon service
 do_daemon() {
+	# Preparations
+	test -d $CONFIGDIR || mkdir -p $CONFIGDIR
+	
+	for i in /dev/video*
+	do
+		if test "$i" != "/dev/video*"
+		then	
+			cname=`basename $i`
+			if ! test -f $CONFIGDIR/$cname.info
+			then
+				echo "NAME=$cname" > $CONFIGDIR/$cname.info
+				echo "DEVICE=$i" >> $CONFIGDIR/$cname.info
+			fi
+		else
+			#Aborting
+			exit 1
+		fi
+	done
+	
+	echo 1 > $PIDFILE
+	
+	cd $CONFIGDIR
 	while test -f $PIDFILE
 	do
-		for i in /dev/video*
+		for i in *.conf
 		do
-			if test "$i" != "/dev/video*"
-			then
-				cname=`basename $i`
-				fswebcam -d $i -r 640x480 /var/www/data/$cname.jpeg
-			fi
+			source ./$i
+			cp /var/www/data/$NAME.jpeg /var/www/data/prev_$NAME.jpeg 2>/dev/null
+			fswebcam -d $DEVICE -r 640x480 /var/www/data/$NAME.jpeg 
+			logevent camchange odvision "Updating snapshot" /var/www/data/$NAME.jpeg
 		done
 		sleep $REFRESH
 	done
