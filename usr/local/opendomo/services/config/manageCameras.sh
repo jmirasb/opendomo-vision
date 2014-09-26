@@ -13,6 +13,7 @@ test -d $CONFIGDIR || mkdir $CONFIGDIR
 
 cd $CONFIGDIR
 
+echo "#> Manage cameras"
 echo "list:`basename $0`"
 for i in *.conf
 do
