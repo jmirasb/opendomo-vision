@@ -43,9 +43,15 @@ do_daemon() {
 			then
 				# If the camera is local (USB attached) extract image
 				fswebcam -d $DEVICE -r 640x480 /var/www/data/$NAME.jpeg 
+				# Only for the local cameras, notify the event
+				logevent camchange odvision "Updating snapshot" /var/www/data/$NAME.jpeg
 			fi
-			# Again, for all the cameras, notify the event
-			logevent camchange odvision "Updating snapshot" /var/www/data/$NAME.jpeg
+			
+			# Special case for dummy cameras, just using nocam static
+			if test $TYPE = "dummy"
+			then
+				cp /var/www/images/nocam.jpeg /var/www/data/$NAME.jpeg
+			fi
 		done
 		sleep $REFRESH
 	done
