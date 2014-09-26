@@ -28,7 +28,7 @@ then
 		fi
 		source ./$i
 		echo "	-$NAME	$NAME	camera $TYPE"
-	fi
+	done
 
 else
 	if test -f $CONFIGDIR/$1.conf
