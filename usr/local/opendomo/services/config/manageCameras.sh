@@ -26,7 +26,8 @@ do
 		exit 0
 	fi
 	source ./$i
-	echo "	-$NAME	$NAME	camera $TYPE"
+	ID=`basename $i | cut -f1 -d.`
+	echo "	-$ID	$NAME	camera $TYPE"
 done
 
 echo "actions:"
