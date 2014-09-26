@@ -8,10 +8,10 @@
 
 PIDFILE="/var/opendomo/run/odvision.pid"
 CONFIGDIR="/etc/opendomo/vision"
+ID="$1"
 
 if ! test -z "$2"
 then
-	ID="$1"
 	NAME="$2"
 	TYPE="$3"
 	FILENAME="$CONFIGDIR/$D.conf"
