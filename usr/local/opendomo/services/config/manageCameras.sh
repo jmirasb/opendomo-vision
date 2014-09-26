@@ -8,6 +8,12 @@
 PIDFILE="/var/opendomo/run/odvision.pid"
 CONFIGDIR="/etc/opendomo/vision"
 
+
+test -d $CONFIGDIR || mkdir $CONFIGDIR
+
+
+exit 0 #DEPRECATED CODE:
+
 # Common video module vars
 if ! test -f "/etc/opendomo/videoConfVars.conf"; then
    cp /etc/opendomo/videoConfVars.conf.orig /etc/opendomo/videoConfVars.conf
