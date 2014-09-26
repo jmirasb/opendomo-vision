@@ -11,9 +11,12 @@ CONFIGDIR="/etc/opendomo/vision"
 
 if ! test -z "$2"
 then
-	FILENAME="$CONFIGDIR/$1.conf"
-	echo "NAME=$2" > $FILENAME
-	echo "TYPE=$3" >> $FILENAME
+	ID="$1"
+	NAME="$2"
+	TYPE="$3"
+	FILENAME="$CONFIGDIR/$D.conf"
+	echo "NAME='$NAME'" > $FILENAME
+	echo "TYPE=$TYPE" >> $FILENAME
 fi
 
 

@@ -22,6 +22,7 @@ do
 		echo "#INFO No cameras were found"
 		echo "actions:"
 		echo "	addCamera.sh	Add camera"
+		echo
 		exit 0
 	fi
 	source ./$i
