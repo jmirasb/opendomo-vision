@@ -20,7 +20,8 @@ do
 	if test "$i" = "*.conf"
 	then
 		echo "#INFO No cameras were found"
-		echo
+		echo "actions:"
+		echo "	addCamera.sh	Add camera"
 		exit 0
 	fi
 	source ./$i
