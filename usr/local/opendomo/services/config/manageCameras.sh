@@ -14,7 +14,7 @@ test -d $CONFIGDIR || mkdir $CONFIGDIR
 cd $CONFIGDIR
 
 echo "#> Manage cameras"
-echo "list:`basename $0`"
+echo "list:addCamera.sh"
 for i in *.conf
 do
 	if test "$i" = "*.conf"

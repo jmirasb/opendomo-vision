@@ -8,10 +8,11 @@
 PIDFILE="/var/opendomo/run/odvision.pid"
 CONFIGDIR="/etc/opendomo/vision"
 
+echo "#>View cameras"
+echo "list:`basename $0`	iconlist"
+
 if test -f $PIDFILE && test -d $CONFIGDIR
 then
-	echo "#>View cameras"
-	echo "list:`basename $0`	iconlist"
 	cd $CONFIGDIR
 	for f in *.conf
 	do
@@ -23,6 +24,8 @@ then
 		fi
 	done
 else
-	echo "#ERR: OpenDomo Vision not configured"
+	echo "#ERR: OpenDomo Vision not started"
+	echo "actions:"
+	echo "	setSystemState.sh	Set system state"
 	echo
 fi
