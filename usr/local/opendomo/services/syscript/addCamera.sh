@@ -32,4 +32,6 @@ echo "form:`basename $0`"
 echo "	code	Code 	text	$ID"
 echo "	name	Name	text	$NAME"
 echo "	type	Type	list[local,dummy,IP]	$TYPE"
+echo "actions:"
+echo "	goback	Back"
 echo 
