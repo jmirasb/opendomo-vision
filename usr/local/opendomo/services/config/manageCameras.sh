@@ -13,37 +13,23 @@ test -d $CONFIGDIR || mkdir $CONFIGDIR
 
 cd $CONFIGDIR
 
-if test -z "$1"
-then
-
-
-	echo "list:`basename $0`"
-	for i in *.conf
-	do
-		if test "$i" = "*.conf"
-		then
-			echo "#INFO No cameras were found"
-			echo
-			exit 0
-		fi
-		source ./$i
-		echo "	-$NAME	$NAME	camera $TYPE"
-	done
-
-else
-	if test -f $CONFIGDIR/$1.conf
+echo "list:`basename $0`"
+for i in *.conf
+do
+	if test "$i" = "*.conf"
 	then
-		source $CONFIGDIR/$1.conf
-		echo "form:`basename $0`"
-		echo "	name	Name	text	$NAME"
-		echo "	type	Type	text	$TYPE"
-		echo 
-	else
-		echo "#ERR: Camera [$1] not found"
-		exit 1
+		echo "#INFO No cameras were found"
+		echo
+		exit 0
 	fi
-fi
-	
+	source ./$i
+	echo "	-$NAME	$NAME	camera $TYPE"
+done
+
+echo "actions:"
+echo "	addCamera.sh	Add camera"
+echo
+
 exit 0 #DEPRECATED CODE:
 
 # Common video module vars
