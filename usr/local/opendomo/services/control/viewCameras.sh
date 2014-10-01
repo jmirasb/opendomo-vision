@@ -26,10 +26,11 @@ then
 		do
 			NAME=""
 			DESCRIPTION=""
+			ID=`basename $f | cut -f1 -d. `
 			source ./$f
 			if ! test -z "$NAME"
 			then
-				echo "	-$NAME	$NAME	camera	$DESCRIPTION"
+				echo "	-$ID	$NAME	camera	$DESCRIPTION"
 			fi
 		done
 	fi
