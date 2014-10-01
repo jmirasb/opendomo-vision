@@ -27,5 +27,6 @@ else
 	echo "#ERR: OpenDomo Vision not started"
 	echo "actions:"
 	echo "	setSystemState.sh	Set system state"
-	echo
+	
 fi
+echo
