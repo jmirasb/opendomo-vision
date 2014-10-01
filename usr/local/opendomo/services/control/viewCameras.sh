@@ -17,10 +17,11 @@ then
 	for f in *.conf
 	do
 		NAME=""
+		DESCRIPTION=""
 		source ./$f
 		if ! test -z "$NAME"
 		then
-			echo "	-$NAME	$NAME	image	/data/$NAME.jpeg"
+			echo "	-$NAME	$NAME	camera	$DESCRIPTION"
 		fi
 	done
 else
