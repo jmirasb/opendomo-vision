@@ -16,7 +16,7 @@ then
 	if ! test -z "$1"
 	then
 		source $CONFIGDIR/$1.conf
-		echo "	-$NAME	$NAME	zoomedcamera	$DESCRIPTION"
+		echo "	-$1	$NAME	zoomedcamera	$DESCRIPTION"
 		echo "actions:"
 		echo "	goback	Back"		
 	else
