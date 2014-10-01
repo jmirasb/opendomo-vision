@@ -13,7 +13,7 @@ echo "list:`basename $0`	iconlist"
 
 if test -f $PIDFILE && test -d $CONFIGDIR
 then
-	if test -z "$1"
+	if ! test -z "$1"
 	then
 		source $CONFIGDIR/$1.conf
 		echo "	-$NAME	$NAME	zoomedcamera	$DESCRIPTION"
