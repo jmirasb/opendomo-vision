@@ -13,17 +13,26 @@ echo "list:`basename $0`	iconlist"
 
 if test -f $PIDFILE && test -d $CONFIGDIR
 then
-	cd $CONFIGDIR
-	for f in *.conf
-	do
-		NAME=""
-		DESCRIPTION=""
-		source ./$f
-		if ! test -z "$NAME"
-		then
-			echo "	-$NAME	$NAME	camera	$DESCRIPTION"
-		fi
-	done
+	if test -z "$1"
+	then
+		source $CONFIGDIR/$1.conf
+		echo "	-$NAME	$NAME	zoomedcamera	$DESCRIPTION"
+		echo "actions:"
+		echo "	goback	Back"		
+	else
+
+		cd $CONFIGDIR
+		for f in *.conf
+		do
+			NAME=""
+			DESCRIPTION=""
+			source ./$f
+			if ! test -z "$NAME"
+			then
+				echo "	-$NAME	$NAME	camera	$DESCRIPTION"
+			fi
+		done
+	fi
 else
 	echo "#ERR: OpenDomo Vision not started"
 	echo "actions:"
