@@ -9,7 +9,7 @@ if test "$1" == "validate"; then
 	source "$2"
 
 	# Validation command
-    if	wget $URL/ --http-user=$USER --http-password=$PASS -O - &>/dev/null
+    if	wget $URL/axis-cgi/jpg/image.cgi --http-user=$USER --http-password=$PASS -O - &>/dev/null
 	then
 		# Valid! Determine model and proper URL
 		exit 0
