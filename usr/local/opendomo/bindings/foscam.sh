@@ -7,6 +7,7 @@
 ### This is a bind for foscam and CGI SDK 2.1 based cameras
 ### You can read more information in http://onlinecamera.net/downloads/foscam-apexis-mjpeg-cgi-sdk.pdf document
 
+
 # validate device
 if test "$1" == "validate"; then
 	source "$2"
