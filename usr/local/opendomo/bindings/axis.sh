@@ -49,7 +49,7 @@ test -d /var/www/data || mkdir -p /var/www/data
 while test -f $PIDFILE
 do
 	# Take the snapshot (see http://www.axis.com/techsup/cam_servers/tech_notes/live_snapshots.htm)
-	$FULLURL="$URL/axis-cgi/jpg/image.cgi?resolution=320x240"
+	FULLURL="$URL/axis-cgi/jpg/image.cgi?resolution=320x240"
 	if	wget -q $FULLURL --http-user=$USER --http-password=$PASS -O $TMPFILE
 	then
 		if test -f $TMPFILE
@@ -66,7 +66,7 @@ do
 		fi
 	
 	else
-		echo "#WARN: ODControl not responding. We will keep trying"
+		echo "#WARN: Camera not responding. We will keep trying"
 	fi
 	
 	# A very quick replacement of the old file with the new one:
