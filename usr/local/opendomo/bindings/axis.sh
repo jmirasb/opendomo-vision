@@ -4,6 +4,7 @@
 
 ### Copyright(c) 2014 OpenDomo Services SL. Licensed under GPL v3 or later
 
+test -d /etc/opendomo/vision || mkdir /etc/opendomo/vision
 
 # validate device
 if test "$1" == "validate"; then
@@ -39,6 +40,8 @@ TMPFILE=/var/opendomo/tmp/$DEVNAME.tmp
 LISTFILE=/var/opendomo/tmp/$DEVNAME.lst
 CFGDIR=/etc/opendomo/control
 CTRLDIR=/var/opendomo/control
+
+touch /etc/opendomo/vision/$DEVNAME.conf
 
 # Preparations:
 test -d $CTRLDIR/$DEVNAME/ || mkdir -p $CTRLDIR/$DEVNAME/

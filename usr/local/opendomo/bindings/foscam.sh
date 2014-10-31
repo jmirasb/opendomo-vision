@@ -4,6 +4,8 @@
 
 ### Copyright(c) 2014 OpenDomo Services SL. Licensed under GPL v3 or later
 
+test -d /etc/opendomo/vision || mkdir /etc/opendomo/vision
+
 ### This is a bind for foscam and CGI SDK 2.1 based cameras
 ### You can read more information in http://onlinecamera.net/downloads/foscam-apexis-mjpeg-cgi-sdk.pdf document
 
@@ -41,6 +43,8 @@ TMPFILE=/var/opendomo/tmp/$DEVNAME.tmp
 LISTFILE=/var/opendomo/tmp/$DEVNAME.lst
 CFGDIR=/etc/opendomo/control
 CTRLDIR=/var/opendomo/control
+
+touch /etc/opendomo/vision/$DEVNAME.conf
 
 # Preparations:
 test -d $CTRLDIR/$DEVNAME/ || mkdir -p $CTRLDIR/$DEVNAME/
