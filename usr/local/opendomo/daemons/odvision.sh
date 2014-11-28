@@ -44,7 +44,7 @@ do_daemon() {
 	do
 		for i in *.conf
 		do
-			TYPE="local"
+			TYPE="ip"
 			ID=`basename $i | cut -f1 -d.`
 			source ./$i
 			# For all the cameras, shift current snapshot with previous
