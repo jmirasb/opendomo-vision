@@ -48,19 +48,13 @@ do_daemon() {
 			ID=`basename $i | cut -f1 -d.`
 			source ./$i
 			# For all the cameras, shift current snapshot with previous
-			cp /var/www/data/$ID.jpeg /var/www/data/prev_$ID.jpeg 2>/dev/null
+			cp /var/www/data/$ID.jpg /var/www/data/prev_$ID.jpg 2>/dev/null
 			if test $TYPE = "local"
 			then
 				# If the camera is local (USB attached) extract image
-				fswebcam -d $DEVICE -r 640x480 /var/www/data/$ID.jpeg 
+				fswebcam -d $DEVICE -r 640x480 /var/www/data/$ID.jpg 
 				# Only for the local cameras, notify the event
-				logevent camchange odvision "Updating snapshot" /var/www/data/$ID.jpeg
-			fi
-			
-			# Special case for dummy cameras, just using nocam static
-			if test $TYPE = "dummy"
-			then
-				cp /var/www/images/nocam.jpeg /var/www/data/$ID.jpeg
+				logevent camchange odvision "Updating snapshot" /var/www/data/$ID.jpg
 			fi
 		done
 		sleep $REFRESH

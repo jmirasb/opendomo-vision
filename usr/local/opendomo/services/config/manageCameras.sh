@@ -41,14 +41,17 @@ else
 
 	test -f $CONFIGDIR/$1.conf && source $CONFIGDIR/$1.conf
 	echo "#> Edit camera"
-	echo "form:$0"
+	echo "form:manageCameras.sh"
 	echo "	code	Code	hidden	$1"
 	echo "	name	Name	text	$NAME"
 	echo "	desc	Description	text	$DESCRIPTION"
+	echo "actions:"
+	echo "	goback	Back"
+	echo "	manageCameras.sh	Save changes"
 	echo
 	if test -d /usr/local/opendomo/filters; then
 		echo "#>Filters"
-		echo "list:$0 selectable"
+		echo "list:`basename $0` selectable"
 		cd /usr/local/opendomo/filters
 		for filter in *; do
 			desc=`grep '#desc:' $filter | cut -f2 -d:`
