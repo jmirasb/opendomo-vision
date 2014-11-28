@@ -16,7 +16,7 @@ cd $CONFIGDIR
 
 if test -z "$1"; then
 	echo "#> Manage cameras"
-	echo "list:manageCameras.sh"
+	echo "list:manageCameras.sh	detailed"
 	for i in *.conf
 	do
 		if test "$i" = "*.conf"
@@ -29,10 +29,10 @@ if test -z "$1"; then
 		fi
 		source ./$i
 		ID=`basename $i | cut -f1 -d.`
-		echo "	-$ID	$NAME	camera $TYPE"
+		echo "	-$ID	$NAME	camera $TYPE	$DESCRIPTION"
 	done
 	echo "actions:"
-	echo "	addCamera.sh	Add camera"
+	echo "	addControlDevice.sh	Add camera"
 else
 	if ! test -z "$NAME" && ! test -z "$DESCRIPTION"; then
 		echo "NAME=$NAME" > $CONFIGDIR/$1.conf
