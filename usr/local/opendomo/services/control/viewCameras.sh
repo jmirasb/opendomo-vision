@@ -15,12 +15,13 @@ if test -f $PIDFILE && test -d $CONFIGDIR
 then
 	if ! test -z "$1"
 	then
+		# Display only one zoomed camera
 		source $CONFIGDIR/$1.conf
 		echo "	-$1	$NAME	zoomedcamera	$DESCRIPTION"
 		echo "actions:"
 		echo "	goback	Back"		
 	else
-
+		# Display all the cameras
 		cd $CONFIGDIR
 		for f in *.conf
 		do
@@ -33,6 +34,10 @@ then
 				echo "	-$ID	$NAME	camera	$DESCRIPTION"
 			fi
 		done
+		echo "actions:"
+		if test -x /usr/local/opendomo/manageCameras.sh; then
+			echo "	manageCameras.sh	Manage cameras"
+		fi
 	fi
 else
 	echo "#ERR: OpenDomo Vision not started"
