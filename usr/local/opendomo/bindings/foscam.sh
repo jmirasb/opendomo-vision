@@ -53,7 +53,7 @@ test -d /var/www/data || mkdir -p /var/www/data
 
 while test -f $PIDFILE
 do
-	$FULLURL="$URL/snapshot.cgi"
+	FULLURL="$URL/snapshot.cgi"
 	if	wget -q $FULLURL --http-user=$USER --http-password=$PASS -O $TMPFILE
 	then
 		if test -f $TMPFILE
