@@ -13,25 +13,48 @@ test -d $CONFIGDIR || mkdir $CONFIGDIR
 
 cd $CONFIGDIR
 
-echo "#> Manage cameras"
-echo "list:addCamera.sh"
-for i in *.conf
-do
-	if test "$i" = "*.conf"
-	then
-		echo "#INFO No cameras were found"
-		echo "actions:"
-		echo "	addCamera.sh	Add camera"
-		echo
-		exit 0
-	fi
-	source ./$i
-	ID=`basename $i | cut -f1 -d.`
-	echo "	-$ID	$NAME	camera $TYPE"
-done
 
-echo "actions:"
-echo "	addCamera.sh	Add camera"
+if test -z "$1"; then
+	echo "#> Manage cameras"
+	echo "list:manageCameras.sh"
+	for i in *.conf
+	do
+		if test "$i" = "*.conf"
+		then
+			echo "#INFO No cameras were found"
+			echo "actions:"
+			echo "	addControlDevice.sh	Add camera"
+			echo
+			exit 0
+		fi
+		source ./$i
+		ID=`basename $i | cut -f1 -d.`
+		echo "	-$ID	$NAME	camera $TYPE"
+	done
+	echo "actions:"
+	echo "	addCamera.sh	Add camera"
+else
+	test -f ./$1 && source ./$1
+	echo "#> Edit camera"
+	echo "form:$0"
+	echo "	desc	Description	text	$NAME"
+	echo
+	if test -d /usr/local/opendomo/filters; then
+		echo "#>Filters"
+		echo "list:$0 selectable"
+		cd /usr/local/opendomo/filters
+		for filter in *; do
+			desc=`grep '#desc:' $filter | cut -f2 -d:`
+			if test -f /etc/opendomo/vision/$camID/$filter.conf; then
+				echo "	$filter	$desc	filter"
+			else
+				echo "	$filter	$desc	filter selected"			
+			fi
+		done
+		echo "actions:"
+		echo "	saveSettings	Save settings"
+	fi
+fi
 echo
 
 exit 0 #DEPRECATED CODE:
