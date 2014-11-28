@@ -34,10 +34,17 @@ if test -z "$1"; then
 	echo "actions:"
 	echo "	addCamera.sh	Add camera"
 else
-	test -f ./$1 && source ./$1
+	if ! test -z "$NAME" && ! test -z "$DESCRIPTION"; then
+		echo "NAME=$NAME" > $CONFIGDIR/$1.conf
+		echo "DESCRIPTION='$DESCRIPTION'" >> $CONFIGDIR/$1.conf
+	fi
+
+	test -f $CONFIGDIR/$1.conf && source $CONFIGDIR/$1.conf
 	echo "#> Edit camera"
 	echo "form:$0"
-	echo "	desc	Description	text	$NAME"
+	echo "	code	Code	hidden	$1"
+	echo "	name	Name	text	$NAME"
+	echo "	desc	Description	text	$DESCRIPTION"
 	echo
 	if test -d /usr/local/opendomo/filters; then
 		echo "#>Filters"
