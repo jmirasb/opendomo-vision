@@ -17,7 +17,7 @@ then
 	then
 		# Display only one zoomed camera
 		source $CONFIGDIR/$1.conf
-		echo "	-$1	$NAME	zoomedcamera	$DESCRIPTION"
+		echo "	-$1	$DESCRIPTION	zoomedcamera	$DESCRIPTION"
 		echo "actions:"
 		echo "	goback	Back"		
 	else
@@ -31,7 +31,7 @@ then
 			source ./$f
 			if ! test -z "$NAME"
 			then
-				echo "	-$ID	$NAME	camera	$DESCRIPTION"
+				echo "	-$ID	$DESCRIPTION	camera	$DESCRIPTION"
 			fi
 		done
 		echo "actions:"

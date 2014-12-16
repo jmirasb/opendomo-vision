@@ -2,16 +2,17 @@
 	width: auto!important;
 	height: auto!important;
 }
-.camera img {
+#viewCameras .camera img {
 	width: 320px;
 	height: 200px;
 }
 
-.zoomedcamera img {
+#viewCameras .zoomedcamera img {
 	width: 640px;
 	height: 400px;
 }
-.camera b, 
-.zoomedcamera b {
-	position: relative;
+#viewCameras li.camera b, 
+#viewCameras li.zoomedcamera b {
+	position: relative!important;
+	font-size: medium;
 }
