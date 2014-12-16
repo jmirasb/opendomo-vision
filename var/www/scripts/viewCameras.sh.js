@@ -2,8 +2,15 @@
 setInterval(refreshCameras,1000);
 
 function refreshCameras() {
-	$("li.camera, li.zoomedcamera").each(function(index){
-		var filename = "/data/" + $(this).attr("id")  + ".jpg?tstamp=" + new Date().getTime();
-		$(this).find("a").css("background","url(" + filename + ") no-repeat center center");
+	$("#viewCameras li").each(function(){
+		var camid = $(this).prop("id");
+		var source = "/data/" + camid + ".jpg?timestamp" + new Date().getTime();
+		$(this).find("img").prop("src",source);
 	});
 }
+$(function(){
+	$("#viewCameras li").each(function(){
+		var camid = $(this).prop("id");
+		$(this).find("a").append("<img id='" + camid + "_cam' src='/data/"+ camid +".jpg'>");
+	});
+});
