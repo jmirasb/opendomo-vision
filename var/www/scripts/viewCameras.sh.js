@@ -30,11 +30,13 @@ $(function(){
 	$("div.tools").find("button.record").on("click",function(){
 		var id = $(this).data("id");
 		if ($("#"+id).hasClass("recording")){
-			var res = loadTXT("./startRecording.sh?param=" + id + "&GUI=XML")
+			var res = loadTXT("./stopRecording.sh?param=" + id + "&GUI=XML");
 			$("#"+id).removeClass("recording");
 		} else {
-			var res = loadTXT("./stopRecording.sh?param=" + id + "&GUI=XML")
-			$("#"+id).addClass("recording");
+			var res = loadTXT("./startRecording.sh?param=" + id + "&GUI=XML");
+			if (res.indexOf("error")==-1) {
+				$("#"+id).addClass("recording");
+			}
 		}
 	});	
 	
