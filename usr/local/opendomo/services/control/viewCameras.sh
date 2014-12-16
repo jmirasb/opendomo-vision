@@ -30,12 +30,18 @@ then
 			NAME=""
 			DESCRIPTION=""
 			STATUS=""
+			FILTERS=""
 			ID=`basename $f | cut -f1 -d. `
 			source ./$f
 			if ! test -z "$NAME"
 			then
 				test -d $RECORDINGS/$ID && STATUS="$STATUS recording"
-				FILTERS=`ls /etc/opendomo/vision/$ID/filters/*` 2>/dev/null
+				if test -d /etc/opendomo/vision/$ID/filters/; then
+					for i in /etc/opendomo/vision/$ID/filters/*.conf; do
+						F=`basename $i | cut -f1 -d.`
+						FILTERS="$FILTERS $F"
+					done
+				fi
 				echo "	-$ID	$DESCRIPTION	camera $STATUS	$FILTERS"
 			fi
 		done

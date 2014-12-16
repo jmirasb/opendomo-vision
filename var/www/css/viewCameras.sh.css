@@ -16,3 +16,42 @@
 	position: relative!important;
 	font-size: medium;
 }
+
+#viewCameras div.tools a {
+	display: inline;
+	width: auto;
+}
+
+.ui-widget-header {
+	/*border: 1px solid #aaaaaa;
+	background: #cccccc; 
+	color: #222222; 
+	border-radius: 4px;
+	*/
+	margin: 2px;
+}
+.ui-widget-header button {
+	font-weight: bold;
+	border: 1px solid #d3d3d3;
+	background: #e6e6e6;
+	font-weight: normal;
+	color: #555555;
+}
+.ui-widget-header button:hover {
+	border: 1px solid #ababab;
+}
+
+li.recording  {
+	animation: blink 1s step-start 0s infinite;
+	-webkit-animation: blink 1s step-start 0s infinite;
+}
+@keyframes blink {  
+	0% { border: 1px solid black; }
+	50% { border: 1px solid red; }
+	100% { border: 1px solid gray; }
+}
+@-webkit-keyframes blink {
+	0% { border: 1px solid black; }
+	50% { border: 1px solid red; }
+	100% { border: 1px solid gray; }
+}
