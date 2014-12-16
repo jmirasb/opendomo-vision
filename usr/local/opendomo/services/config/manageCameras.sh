@@ -52,7 +52,7 @@ else
 	echo
 	if test -d /usr/local/opendomo/filters; then
 		echo "#>Filters"
-		echo "list:`basename $0`	selectable"
+		echo "list:`basename $0`	listbox selectable"
 		cd /usr/local/opendomo/filters
 		for filter in *; do
 			desc=`grep '#desc:' $filter/$filter.py | cut -f2 -d:`
