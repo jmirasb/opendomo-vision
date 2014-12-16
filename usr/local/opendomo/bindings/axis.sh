@@ -48,7 +48,7 @@ test -d $CTRLDIR/$DEVNAME/ || mkdir -p $CTRLDIR/$DEVNAME/
 test -d $CFGDIR/$DEVNAME/ || mkdir -p $CFGDIR/$DEVNAME/
 test -d /var/www/data || mkdir -p /var/www/data
 
-
+logevent notice odvision "Starting camera [$DEVNAME]"
 while test -f $PIDFILE
 do
 	# Take the snapshot (see http://www.axis.com/techsup/cam_servers/tech_notes/live_snapshots.htm)
@@ -57,7 +57,7 @@ do
 	then
 		if test -f $TMPFILE
 		then
-			cp $TMPFILE  /var/www/data/$DEVNAME.jpg
+			cp -vf $TMPFILE  /var/www/data/$DEVNAME.jpg
 			echo >  /var/www/data/$DEVNAME.odauto.tmp
 			
 			# Finally, generate JSON fragment
@@ -69,6 +69,7 @@ do
 		fi
 	
 	else
+		logevent notice odvision "Camera [$DEVNAME] failed"
 		echo "#WARN: Camera not responding. We will keep trying"
 	fi
 	
@@ -79,3 +80,4 @@ do
 	rm $TMPFILE 
 	sleep $REFRESH
 done
+logevent notice odvision "Closing camera [$DEVNAME]"

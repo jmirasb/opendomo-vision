@@ -50,7 +50,7 @@ touch /etc/opendomo/vision/$DEVNAME.conf
 test -d $CTRLDIR/$DEVNAME/ || mkdir -p $CTRLDIR/$DEVNAME/
 test -d $CFGDIR/$DEVNAME/ || mkdir -p $CFGDIR/$DEVNAME/
 test -d /var/www/data || mkdir -p /var/www/data
-
+logevent notice odvision "Starting camera [$DEVNAME]"
 while test -f $PIDFILE
 do
 	FULLURL="$URL/snapshot.cgi"
@@ -58,7 +58,7 @@ do
 	then
 		if test -f $TMPFILE
 		then
-			cp $TMPFILE  /var/www/data/$DEVNAME.jpg
+			cp -vf $TMPFILE  /var/www/data/$DEVNAME.jpg
 			echo >  /var/www/data/$DEVNAME.odauto.tmp
 
 			# Finally, generate JSON fragment
@@ -69,7 +69,8 @@ do
 			cat $TMPFILE
 		fi
 	else
-		echo "#WARN: ODControl not responding. We will keep trying"
+		logevent notice odvision "Camera [$DEVNAME] failed"
+		echo "#WARN: Camera not responding. We will keep trying"
 	fi
 
 	# A very quick replacement of the old file with the new one:
@@ -79,3 +80,4 @@ do
 	rm $TMPFILE
 	sleep $REFRESH
 done
+logevent notice odvision "Closing camera [$DEVNAME]"
