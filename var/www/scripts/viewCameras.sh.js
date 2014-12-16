@@ -10,9 +10,15 @@ function refreshCameras() {
 }
 $(function(){
 	$("#viewCameras li").each(function(){
+		var label = $(this).find("b").hide().text(); 
 		var camid = $(this).prop("id");
 		$(this).find("a").prepend("<img id='" + camid + "_cam' src='/data/"+ camid +".jpg'/>");
-		$(this).find("b").append("<button class='record'>Record</button>");
+		$(this).append("<div>" + label + "   <a href='javascript:startStopRecording(this);'>REC</a></div>");
+		
 	});
 	refreshCameras();
 });
+
+function startStopRecording(cam){
+	console.log("Recording " + cam);
+}

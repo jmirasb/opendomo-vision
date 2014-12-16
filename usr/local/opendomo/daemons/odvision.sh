@@ -44,7 +44,7 @@ do_daemon() {
 	cd $CONFIGDIR
 	while test -f $PIDFILE
 	do
-		TIMESTAMP=`date +%S`
+		TIMESTAMP=`date +%s`
 		for i in *.conf
 		do
 			TYPE="ip"

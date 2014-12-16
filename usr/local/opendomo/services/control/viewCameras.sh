@@ -7,6 +7,8 @@
 
 PIDFILE="/var/opendomo/run/odvision.pid"
 CONFIGDIR="/etc/opendomo/vision"
+#FIXME Use configured directory:
+RECORDINGS="/media/recording"
 
 echo "#>View cameras"
 echo "list:`basename $0`	iconlist"
@@ -27,11 +29,14 @@ then
 		do
 			NAME=""
 			DESCRIPTION=""
+			STATUS=""
 			ID=`basename $f | cut -f1 -d. `
 			source ./$f
 			if ! test -z "$NAME"
 			then
-				echo "	-$ID	$DESCRIPTION	camera	$DESCRIPTION"
+				test -d $RECORDINGS/$ID && STATUS="$STATUS recording"
+				FILTERS=`ls /etc/opendomo/vision/$ID/filters/*` 2>/dev/null
+				echo "	-$ID	$DESCRIPTION	camera $STATUS	$FILTERS"
 			fi
 		done
 		echo "actions:"
