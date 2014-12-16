@@ -18,6 +18,8 @@ DESC="Vision"
 PIDFILE="/var/opendomo/run/odvision.pid"
 REFRESH="2"
 CONFIGDIR="/etc/opendomo/vision"
+#FIXME Use configured directory:
+RECORDINGS="/media/recording"
 
 #This is the actual daemon service
 do_daemon() {
@@ -38,11 +40,11 @@ do_daemon() {
 		fi
 	done
 	
-	echo 1 > $PIDFILE
-	
+
 	cd $CONFIGDIR
 	while test -f $PIDFILE
 	do
+		TIMESTAMP=`date +%S`
 		for i in *.conf
 		do
 			TYPE="ip"
@@ -50,6 +52,12 @@ do_daemon() {
 			source ./$i
 			# For all the cameras, shift current snapshot with previous
 			cp /var/www/data/$ID.jpg /var/www/data/prev_$ID.jpg 2>/dev/null
+			
+			# If camera is set to recording
+			if test -d $RECORDINGS/$ID/; then
+				cp /var/www/data/$ID.jpg  $RECORDINGS/$ID/$TIMESTAMP.jpg
+			fi
+			
 			if test $TYPE = "local"
 			then
 				# If the camera is local (USB attached) extract image
@@ -64,6 +72,7 @@ do_daemon() {
 
 
 do_start() {
+	echo 1 > $PIDFILE
 	$0 daemon &
 }
 do_stop() {

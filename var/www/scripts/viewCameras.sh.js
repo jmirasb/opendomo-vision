@@ -11,6 +11,6 @@ function refreshCameras() {
 $(function(){
 	$("#viewCameras li").each(function(){
 		var camid = $(this).prop("id");
-		$(this).find("a").append("<img id='" + camid + "_cam' src='/data/"+ camid +".jpg'>");
+		$(this).find("a").prepend("<img id='" + camid + "_cam' src='/data/"+ camid +".jpg'/>");
 	});
 });

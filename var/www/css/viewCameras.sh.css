@@ -1,9 +1,17 @@
-.camera{
-	width: 200px!important;
-	height: 200px!important;
+.camera, .zoomedcamera{
+	width: auto!important;
+	height: auto!important;
+}
+.camera img {
+	width: 320px;
+	height: 200px;
 }
 
-.zoomedcamera {
-	width: 400px!important;
-	height: 400px!important;
+.zoomedcamera img {
+	width: 640px;
+	height: 400px;
+}
+.camera b, 
+.zoomedcamera b {
+	position: relative;
 }
