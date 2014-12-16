@@ -29,7 +29,7 @@ $(function(){
 	});
 	$("div.tools").find("button.record").on("click",function(){
 		var id = $(this).data("id");
-		$("#"+id+).toggleClass("recording");
+		$("#"+id).toggleClass("recording");
 	});	
 	
 	refreshCameras();
