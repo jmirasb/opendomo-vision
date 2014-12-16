@@ -34,16 +34,17 @@ if test -z "$1"; then
 	echo "actions:"
 	echo "	addControlDevice.sh	Add camera"
 else
+	camID=$1
 	if ! test -z "$NAME" && ! test -z "$DESCRIPTION"; then
-		echo "NAME=$NAME" > $CONFIGDIR/$1.conf
-		echo "DESCRIPTION='$DESCRIPTION'" >> $CONFIGDIR/$1.conf
+		echo "NAME=$NAME" > $CONFIGDIR/$camID.conf
+		echo "DESCRIPTION='$DESCRIPTION'" >> $CONFIGDIR/$camID.conf
 	fi
 
-	test -f $CONFIGDIR/$1.conf && source $CONFIGDIR/$1.conf
+	test -f $CONFIGDIR/$camID.conf && source $CONFIGDIR/$camID.conf
 	echo "#> Edit camera"
 	echo "form:manageCameras.sh"
-	echo "	code	Code	hidden	$1"
-	echo "	name	Name	text	$NAME"
+	echo "	code	Code	hidden	$camID"
+	echo "	name	Name	hidden	$NAME"
 	echo "	desc	Description	text	$DESCRIPTION"
 	echo "actions:"
 	echo "	goback	Back"
@@ -51,14 +52,14 @@ else
 	echo
 	if test -d /usr/local/opendomo/filters; then
 		echo "#>Filters"
-		echo "list:`basename $0` selectable"
+		echo "list:`basename $0`	selectable"
 		cd /usr/local/opendomo/filters
 		for filter in *; do
-			desc=`grep '#desc:' $filter | cut -f2 -d:`
-			if test -f /etc/opendomo/vision/$camID/$filter.conf; then
-				echo "	$filter	$desc	filter"
+			desc=`grep '#desc:' $filter/$filter.py | cut -f2 -d:`
+			if test -f /etc/opendomo/vision/$1/filters/$filter.conf; then
+				echo "	$filter	$desc	filter selected"
 			else
-				echo "	$filter	$desc	filter selected"			
+				echo "	$filter	$desc	filter"			
 			fi
 		done
 		echo "actions:"
