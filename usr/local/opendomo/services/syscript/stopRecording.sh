@@ -1,0 +1,22 @@
+#!/bin/sh
+#desc:Stop recording
+#package:odvision
+
+CONFIGDIR="/etc/opendomo/vision"
+#FIXME Use configured directory:
+RECORDINGS="/media/recording"
+if test -z "$1"; then
+	echo "#ERR Wrong format"
+else
+	CONFIGFILE=$CONFIGDIR/$1.conf
+	if test -f $CONFIGFILE; then
+		mv $RECORDINGS/$1 $RECORDINGS/.$1
+		logevent notice odvision "Recording stopped on [$1]"
+	fi
+	if test -d $RECORDINGS/$1/; then
+		echo "#INFO Recording stopped"
+	else
+		echo "#ERR Cannot record"
+	fi
+fi 
+echo
