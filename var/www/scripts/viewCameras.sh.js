@@ -29,8 +29,24 @@ $(function(){
 	});
 	$("div.tools").find("button.record").on("click",function(){
 		var id = $(this).data("id");
-		$("#"+id).toggleClass("recording");
+		if ($("#"+id).hasClass("recording")){
+			var res = loadTXT("./startRecording.sh?param=" + id + "&GUI=XML")
+			$("#"+id).removeClass("recording");
+		} else {
+			var res = loadTXT("./stopRecording.sh?param=" + id + "&GUI=XML")
+			$("#"+id).addClass("recording");
+		}
 	});	
+	
+	// Make this variable:
+	$("div.tools").find("button.motion").on("click",function(){
+		var id = $(this).data("id");	
+		$("#"+id+" img").prop("src","/data/" + id + "_motion.jpg");
+	});
+	$("div.tools").find("button.circle").on("click",function(){
+		var id = $(this).data("id");	
+		$("#"+id+" img").prop("src","/data/" + id + "_circle.jpg");
+	});
 	
 	refreshCameras();
 });
