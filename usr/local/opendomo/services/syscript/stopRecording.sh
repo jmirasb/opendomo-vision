@@ -10,7 +10,10 @@ if test -z "$1"; then
 else
 	CONFIGFILE=$CONFIGDIR/$1.conf
 	if test -f $CONFIGFILE; then
-		mv $RECORDINGS/$1 $RECORDINGS/.$1
+		TIMESTAMP=`date +%s+`
+		mv $RECORDINGS/$1 $RECORDINGS/$1-$TIMESTAMP
+		cd $RECORDINGS/$1-$TIMESTAMP/
+		tar -cvf $1-$TIMESTAMP.tgz *.jpg
 		logevent notice odvision "Recording stopped on [$1]"
 	fi
 	if test -d $RECORDINGS/$1/; then

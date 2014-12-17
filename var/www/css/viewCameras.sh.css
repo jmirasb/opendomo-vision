@@ -1,6 +1,7 @@
 .camera, .zoomedcamera{
 	width: auto!important;
 	height: auto!important;
+	border: 2pt solid #2A568E;
 }
 #viewCameras .camera img {
 	width: 320px;
@@ -20,6 +21,27 @@
 #viewCameras div.tools a {
 	display: inline;
 	width: auto;
+}
+
+div.tools button {
+	margin: 0px;
+}
+button.record {
+	margin-right: 10px;
+	border-bottom-right-radius: 4px;
+	border-top-right-radius: 4px;
+}
+button.default {
+	border-bottom-left-radius: 4px;
+	border-top-left-radius: 4px;
+}
+span.filters button:first-child{
+	border-bottom-left-radius: 4px;
+	border-top-left-radius: 4px;
+}
+span.filters button:last-child{
+	border-bottom-right-radius: 4px;
+	border-top-right-radius: 4px;
 }
 
 .ui-widget-header {
@@ -46,12 +68,12 @@ li.recording  {
 	-webkit-animation: blink 1s step-start 0s infinite;
 }
 @keyframes blink {  
-	0% { border: 1px solid black; }
-	50% { border: 1px solid red; }
-	100% { border: 1px solid gray; }
+	0% { border: 2pt solid #2A568E; }
+	50% { border: 2pt solid red; }
+	100% { border: 2pt solid gray; }
 }
 @-webkit-keyframes blink {
-	0% { border: 1px solid black; }
-	50% { border: 1px solid red; }
-	100% { border: 1px solid gray; }
+	0% { border: 2pt solid #2A568E; }
+	50% { border: 2pt solid red; }
+	100% { border: 2pt solid gray; }
 }

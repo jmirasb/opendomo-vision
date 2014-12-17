@@ -15,12 +15,14 @@ $(function(){
 		var filters = $(this).find("p").text().split(" ");
 		$(this).find("a").prepend("<img id='" + camid + "_cam' src='/data/"+ camid +".jpg'/>");
 		var buttons =  "<button class='default' type='button' data-id='" + camid + "'>"+ label + "</button>"
-			+ "<button class='record'  type='button' data-id='" + camid + "'>REC</button>";
+			+ "<button class='record'  type='button' data-id='" + camid + "'>REC</button><span class='filters'>";
 		for(var i=0;i<filters.length;i++){
-			buttons = buttons + "<button class='"+ filters[i] + "'  type='button' data-id='" + camid + "'>"+ filters[i] + "</button>";
+			buttons = buttons + "<button class='filter "+ filters[i] 
+			+ "'  type='button' data-filtername='"+ filters[i] 
+			+ "' data-id='" + camid + "'>"+ filters[i] + "</button>";
 		}
 			
-		$(this).append("<div class='tools ui-widget-header'>" + buttons + "</div>");
+		$(this).append("<div class='tools ui-widget-header'>" + buttons + "</span></div>");
 		
 	});
 	$("div.tools").find("button.default").on("click",function(){
@@ -39,15 +41,10 @@ $(function(){
 			}
 		}
 	});	
-	
-	// Make this variable:
-	$("div.tools").find("button.motion").on("click",function(){
-		var id = $(this).data("id");	
-		$("#"+id+" img").prop("src","/data/" + id + "_motion.jpg");
-	});
-	$("div.tools").find("button.circle").on("click",function(){
-		var id = $(this).data("id");	
-		$("#"+id+" img").prop("src","/data/" + id + "_circle.jpg");
+	$("div.tools").find("button.filter").on("click",function(){
+		var id = $(this).data("id");
+		var filter = $(this).data("filtername");
+		$("#"+id+" img").prop("src","/data/" + id + "_" + filter + ".jpg");	
 	});
 	
 	refreshCameras();
