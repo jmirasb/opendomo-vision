@@ -16,7 +16,7 @@ else
 	if test -d $RECORDINGS/$1/; then
 		echo "#INFO Recording started"
 	else
-		echo "#ERR Cannot record"
+		echo "#ERR Invalid storage directory"
 	fi
 fi 
-echo
+echo 

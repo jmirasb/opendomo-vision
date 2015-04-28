@@ -38,6 +38,9 @@ $(function(){
 			var res = loadTXT("./startRecording.sh?param=" + id + "&GUI=XML");
 			if (res.indexOf("error")==-1) {
 				$("#"+id).addClass("recording");
+			} else {
+				var msg = $($.parseXML(res)).find("error").attr("description");
+				alert(msg);
 			}
 		}
 	});	

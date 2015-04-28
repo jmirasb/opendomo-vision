@@ -1,5 +1,5 @@
 DESCRIPTION="Vision"
-REQUIRED_BYTES="5000" 
+REQUIRED_BYTES="500000" 
 SCREENSHOTS="https://github.com/jmirasb/opendomo-vision/screenshot1.png" 
 SCHEME="FEFABA FFFFFF" 
 ICON="odvision.png"
