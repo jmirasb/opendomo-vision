@@ -3,7 +3,11 @@ function refreshCameras() {
 	$("#viewCameras li").each(function(){
 		var camid = $(this).prop("id");
 		var source= $(this).find("img").prop("src").split("?",1)[0] + "?t=" + new Date().getTime();
-		$(this).find("img").prop("src",source);
+		$("#"+camid+"_preload").on("load",function(){
+			var camid = $(this).data("cam");
+			$("#"+camid).prop("src",source);	
+		}).prop("src",source);
+		
 	});
 	setTimeout(refreshCameras,1000);
 }
@@ -12,7 +16,9 @@ $(function(){
 		var label   = $(this).find("b").hide().text(); 
 		var camid   = $(this).prop("id");
 		var filters = $(this).find("p").text().split(" ");
-		$(this).find("a").prepend("<img id='" + camid + "_cam' src='/data/"+ camid +".jpg'/>");
+		$(this).find("a")
+			.prepend("<img id='"+camid+"_preload' data-cam='"+camid+"' class='preload' src='/data/"+ camid +".jpg'>"+
+				"<img id='" + camid + "_cam' data-cam='"+camid+"' src='/data/"+ camid +".jpg'/>");
 		var buttons =  "<button class='default' type='button' data-id='" + camid + "'>"+ label + "</button>"
 			+ "<button class='record'  type='button' data-id='" + camid + "'>REC</button><span class='filters'>";
 		for(var i=0;i<filters.length;i++){
