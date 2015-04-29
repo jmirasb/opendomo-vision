@@ -58,7 +58,6 @@ do
 	then
 		if test -f $TMPFILE
 		then
-			mv $TMPFILE  /var/www/data/$DEVNAME.jpg
 			echo >  /var/www/data/$DEVNAME.odauto.tmp
 
 			# Finally, generate JSON fragment
