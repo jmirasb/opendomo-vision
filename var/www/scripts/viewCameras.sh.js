@@ -1,5 +1,4 @@
-
-
+var repositoryURL="https://github.com/jmirasb/opendomo-vision/";
 function refreshCameras() {
 	$("#viewCameras li").each(function(){
 		var camid = $(this).prop("id");
