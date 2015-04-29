@@ -13,7 +13,7 @@ else
 		if test -f /var/opendomo/run/odvision-$1.recording && test -d /media/$STORAGE; then
 			source $CONFIGFILE
 			rm /var/opendomo/run/odvision-$1.recording
-			TIMESTAMP=`date +%s+`
+			TIMESTAMP=`date +%s`
 			mkdir -p /media/$STORAGE/$1-$TIMESTAMP
 			mv /media/$STORAGE/*.* /media/$STORAGE/$1-$TIMESTAMP
 			cd /media/$STORAGE/$1-$TIMESTAMP
