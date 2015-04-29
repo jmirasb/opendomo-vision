@@ -64,6 +64,9 @@ span.filters button:last-child{
 	border: 1px solid #ababab;
 }
 
+img.preload {
+	visibility: hidden;
+}
 li.recording  {
 	animation: blink 1s step-start 0s infinite;
 	-webkit-animation: blink 1s step-start 0s infinite;

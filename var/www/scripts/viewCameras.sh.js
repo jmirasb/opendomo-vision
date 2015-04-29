@@ -5,7 +5,7 @@ function refreshCameras() {
 		var source= $(this).find("img").prop("src").split("?",1)[0] + "?t=" + new Date().getTime();
 		$("#"+camid+"_preload").on("load",function(){
 			var camid = $(this).data("cam");
-			$("#"+camid).prop("src",source);	
+			$("#"+camid +"_cam").prop("src",source);	
 		}).prop("src",source);
 		
 	});
@@ -22,7 +22,7 @@ $(function(){
 		var buttons =  "<button class='default' type='button' data-id='" + camid + "'>"+ label + "</button>"
 			+ "<button class='record'  type='button' data-id='" + camid + "'>REC</button><span class='filters'>";
 		for(var i=0;i<filters.length;i++){
-			if (filters[i]!=" "){
+			if (filters[i].trim()!=""){
 				buttons = buttons + "<button class='filter "+ filters[i] 
 				+ "'  type='button' data-filtername='"+ filters[i] 
 				+ "' data-id='" + camid + "'>"+ filters[i] + "</button>";
