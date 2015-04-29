@@ -35,7 +35,12 @@ else
 	camID=$1
 	NAME="$2"
 	DESCRIPTION="$3"
-	STORAGE="$4"
+	
+	if test -d "/media/$4" && test -x "/media/$4"; then
+		STORAGE="$4"
+	else
+		STORAGE=""
+	fi 
 	if ! test -z "$NAME" && ! test -z "$DESCRIPTION"; then
 		echo "NAME=$NAME" > $CONFIGDIR/$camID.conf
 		echo "DESCRIPTION='$DESCRIPTION'" >> $CONFIGDIR/$camID.conf
