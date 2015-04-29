@@ -16,13 +16,14 @@ $(function(){
 		var buttons =  "<button class='default' type='button' data-id='" + camid + "'>"+ label + "</button>"
 			+ "<button class='record'  type='button' data-id='" + camid + "'>REC</button><span class='filters'>";
 		for(var i=0;i<filters.length;i++){
-			buttons = buttons + "<button class='filter "+ filters[i] 
-			+ "'  type='button' data-filtername='"+ filters[i] 
-			+ "' data-id='" + camid + "'>"+ filters[i] + "</button>";
+			if (filters[i]!=" "){
+				buttons = buttons + "<button class='filter "+ filters[i] 
+				+ "'  type='button' data-filtername='"+ filters[i] 
+				+ "' data-id='" + camid + "'>"+ filters[i] + "</button>";
+			}
 		}
-			
+					
 		$(this).append("<div class='tools ui-widget-header'>" + buttons + "</span></div>");
-		
 	});
 	$("div.tools").find("button.default").on("click",function(){
 		var id = $(this).data("id");
