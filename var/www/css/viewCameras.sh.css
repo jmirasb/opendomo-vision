@@ -65,7 +65,7 @@ span.filters button:last-child{
 }
 
 img.preload {
-	visibility: hidden;
+	display: none;
 }
 li.recording  {
 	animation: blink 1s step-start 0s infinite;
