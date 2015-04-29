@@ -2,21 +2,22 @@
 #desc:Start recording
 #package:odvision
 
+# Copyright(c) 2015 OpenDomo Services SL. Licensed under GPL v3 or later
+
 CONFIGDIR="/etc/opendomo/vision"
-#FIXME Use configured directory:
-RECORDINGS="/media/recording"
 if test -z "$1"; then
 	echo "#ERR Wrong format"
 else
 	CONFIGFILE=$CONFIGDIR/$1.conf
 	if test -f $CONFIGFILE; then
-		mkdir -p $RECORDINGS/$1/
-		logevent notice odvision "Recording started on [$1]"
-	fi
-	if test -d $RECORDINGS/$1/; then
-		echo "#INFO Recording started"
-	else
-		echo "#ERR Invalid storage directory"
+		source $CONFIGFILE
+		if test -d /media/$STORAGE && test -x /media/$STORAGE; then
+			echo "#INFO Recording started"
+			touch /var/opendomo/run/odvision-$1.recording
+			logevent notice odvision "Recording started on [$1]"
+		else
+			echo "#ERR Invalid storage directory"
+		fi
 	fi
 fi 
 echo 

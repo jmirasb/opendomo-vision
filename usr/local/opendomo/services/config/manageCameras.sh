@@ -3,16 +3,14 @@
 #package:odvision
 #type:local
 
-# Copyright(c) 2014 OpenDomo Services SL. Licensed under GPL v3 or later
+# Copyright(c) 2015 OpenDomo Services SL. Licensed under GPL v3 or later
 
 PIDFILE="/var/opendomo/run/odvision.pid"
 CONFIGDIR="/etc/opendomo/vision"
-
+POSSIBLESTORAGE=""
 
 test -d $CONFIGDIR || mkdir $CONFIGDIR
-
 cd $CONFIGDIR
-
 
 if test -z "$1"; then
 	echo "#> Manage cameras"
@@ -35,17 +33,33 @@ if test -z "$1"; then
 	echo "	addControlDevice.sh	Add camera"
 else
 	camID=$1
+	NAME="$2"
+	DESCRIPTION="$3"
+	STORAGE="$4"
 	if ! test -z "$NAME" && ! test -z "$DESCRIPTION"; then
 		echo "NAME=$NAME" > $CONFIGDIR/$camID.conf
 		echo "DESCRIPTION='$DESCRIPTION'" >> $CONFIGDIR/$camID.conf
+		echo "STORAGE='$STORAGE'" >> $CONFIGDIR/$camID.conf
 	fi
 
+	cd /media/
+	for d in `find -type d`; do
+		if test -d /media/$d && test -x /media/$d; then
+			if test -z "$POSSIBLESTORAGE"; then
+				POSSIBLESTORAGE="$d"
+			else
+				POSSIBLESTORAGE="$POSSIBLESTORAGE,$d"
+			fi
+		fi
+	done
+	
 	test -f $CONFIGDIR/$camID.conf && source $CONFIGDIR/$camID.conf
 	echo "#> Edit camera"
 	echo "form:manageCameras.sh"
 	echo "	code	Code	hidden	$camID"
 	echo "	name	Name	hidden	$NAME"
 	echo "	desc	Description	text	$DESCRIPTION"
+	echo "	storage	Storage	list[$POSSIBLESTORAGE]	$STORAGE"
 	echo "actions:"
 	echo "	goback	Back"
 	echo "	manageCameras.sh	Save changes"

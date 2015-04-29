@@ -2,24 +2,27 @@
 #desc:Stop recording
 #package:odvision
 
+# Copyright(c) 2015 OpenDomo Services SL. Licensed under GPL v3 or later
+
 CONFIGDIR="/etc/opendomo/vision"
-#FIXME Use configured directory:
-RECORDINGS="/media/recording"
 if test -z "$1"; then
 	echo "#ERR Wrong format"
 else
 	CONFIGFILE=$CONFIGDIR/$1.conf
 	if test -f $CONFIGFILE; then
-		TIMESTAMP=`date +%s+`
-		mv $RECORDINGS/$1 $RECORDINGS/$1-$TIMESTAMP
-		cd $RECORDINGS/$1-$TIMESTAMP/
-		tar -cvf $1-$TIMESTAMP.tgz *.jpg
-		logevent notice odvision "Recording stopped on [$1]"
-	fi
-	if test -d $RECORDINGS/$1/; then
-		echo "#INFO Recording stopped"
-	else
-		echo "#ERR Cannot record"
+		if test -f /var/opendomo/run/odvision-$1.recording && test -d /media/$STORAGE; then
+			source $CONFIGFILE
+			rm /var/opendomo/run/odvision-$1.recording
+			TIMESTAMP=`date +%s+`
+			mkdir -p /media/$STORAGE/$1-$TIMESTAMP
+			mv /media/$STORAGE/*.* /media/$STORAGE/$1-$TIMESTAMP
+			cd /media/$STORAGE/$1-$TIMESTAMP
+			tar -cvf $1-$TIMESTAMP.tgz *.*
+			echo "#INFO Recording stopped"
+			logevent notice odvision "Recording stopped on [$1]"
+		else
+			echo "#ERR Cannot record"
+		fi
 	fi
 fi 
 echo

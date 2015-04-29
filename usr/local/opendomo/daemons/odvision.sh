@@ -54,8 +54,8 @@ do_daemon() {
 			cp /var/www/data/$ID.jpg /var/www/data/prev_$ID.jpg 2>/dev/null
 			
 			# If camera is set to recording
-			if test -d $RECORDINGS/$ID/; then
-				cp /var/www/data/$ID.jpg  $RECORDINGS/$ID/$TIMESTAMP.jpg
+			if test -f /var/opendomo/run/odvision-$ID.recording; then
+				cp /var/www/data/$ID.jpg  /media/$STORAGE/$TIMESTAMP.jpg
 			fi
 			
 			if test $TYPE = "local"

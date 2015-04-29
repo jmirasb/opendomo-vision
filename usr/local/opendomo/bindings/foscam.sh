@@ -54,7 +54,7 @@ logevent notice odvision "Starting camera [$DEVNAME]"
 while test -f $PIDFILE
 do
 	FULLURL="$URL/snapshot.cgi"
-	if	wget -q $FULLURL --http-user=$USER --http-password=$PASS -O $TMPFILE
+	if wget -q $FULLURL --http-user=$USER --http-password=$PASS -O $TMPFILE
 	then
 		if test -f $TMPFILE
 		then
@@ -66,7 +66,6 @@ do
 			echo "{\"Name\":\"$desc\",\"Type\":\"img\",\"Tag\":\"security\",\"Value\":\"$FILENAME\",\"Min\":\"0\",\"Max\":\"0\",\"Id\":\"$DEVNAME_cam\"}," >> /var/www/data/$DEVNAME.odauto.tmp
 		else
 			echo "#ERR: The query ended with an error"
-			cat $TMPFILE
 		fi
 	else
 		logevent notice odvision "Camera [$DEVNAME] failed"
