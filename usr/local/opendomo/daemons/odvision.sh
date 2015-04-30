@@ -86,6 +86,7 @@ case "$1" in
 
 	start)
         log_daemon_msg "Starting $DESC" "$NAME"
+		/usr/local/opendomo/daemons/odauto.sh restart 2>/dev/null
         do_start
         log_end_msg 0
     ;;
