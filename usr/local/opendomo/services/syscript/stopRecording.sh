@@ -17,7 +17,7 @@ else
 			mkdir -p /media/$STORAGE/$1-$TIMESTAMP
 			mv /media/$STORAGE/*.* /media/$STORAGE/$1-$TIMESTAMP
 			cd /media/$STORAGE/$1-$TIMESTAMP
-			tar -cvf $1-$TIMESTAMP.tgz *.*
+			tar -cvf $1-$TIMESTAMP.tar *.* && gzip $1-$TIMESTAMP.tar
 			echo "#INFO Recording stopped"
 			logevent notice odvision "Recording stopped on [$1]"
 		else
