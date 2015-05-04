@@ -3,12 +3,10 @@
 #package:odvision
 #type:local
 
-# Copyright(c) 2014 OpenDomo Services SL. Licensed under GPL v3 or later
+# Copyright(c) 2015 OpenDomo Services SL. Licensed under GPL v3 or later
 
 PIDFILE="/var/opendomo/run/odvision.pid"
 CONFIGDIR="/etc/opendomo/vision"
-#FIXME Use configured directory:
-RECORDINGS="/media/recording"
 
 echo "#>View cameras"
 echo "list:`basename $0`	iconlist"
@@ -35,7 +33,7 @@ then
 			source ./$f
 			if ! test -z "$NAME"
 			then
-				test -d $RECORDINGS/$ID && STATUS="$STATUS recording"
+				test -f /var/opendomo/run/odvision-$1.recording && STATUS="$STATUS recording"
 				if test -d /etc/opendomo/vision/$ID/filters/; then
 					for i in /etc/opendomo/vision/$ID/filters/*.conf; do
 						F=`basename $i | cut -f1 -d.`
