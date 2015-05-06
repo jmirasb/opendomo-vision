@@ -41,9 +41,10 @@ do_daemon() {
 	done
 	
 
-	cd $CONFIGDIR
+	
 	while test -f $PIDFILE
 	do
+		cd $CONFIGDIR
 		TIMESTAMP=`date +%s`
 		for i in *.conf
 		do
@@ -64,6 +65,16 @@ do_daemon() {
 				fswebcam -d $DEVICE -r 640x480 /var/www/data/$ID.jpg 
 				# Only for the local cameras, notify the event
 				logevent camchange odvision "Updating snapshot" /var/www/data/$ID.jpg
+			fi
+			
+			# Check if filters are configured and run them
+			if test -d $CONFIGDIR/$ID/filters; then
+				for fil in $CONFIGDIR/$ID/filters/*.conf; do
+					IDF=`basename $fil | cut -f1 -d.`
+					# source ./$f
+					python $FILTERSDIR/$IDF/$IDF.py $ID
+					# no in daemon logevent $IDF opencvodos "Motion detected in $ID" 
+				done				
 			fi
 		done
 		sleep $REFRESH
