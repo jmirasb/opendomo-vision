@@ -1,1 +1,1 @@
-libav-tools fswebcam
+libav-tools fswebcam libopencv-dev python-opencv
