@@ -27,7 +27,7 @@ if test -z "$1"; then
 		fi
 		source ./$i
 		ID=`basename $i | cut -f1 -d.`
-		echo "	-$ID	$NAME	camera $TYPE	$DESCRIPTION"
+		echo "	-$ID	$NAME	cam-$TYPE	$DESCRIPTION"
 	done
 	echo "actions:"
 	echo "	addControlDevice.sh	Add camera"
