@@ -4,13 +4,13 @@ $("#submit-saveSettings").on("click",function(e){
 	$("#manageCameras li.filter").each(function(){
 		$(this).addClass("loading");
 		if ($(this).hasClass("selected")){
-			var filter = $(this).id;
+			var filter = $(this).prop("id");
 			var camera = $("#code").val();
 			loadAsync("./addFilterToCamera.sh?camera="+camera+"&filter="+filter,function(){
 				console.log("Saved "+filter);
 			});
 		} else {
-			var filter = $(this).id;
+			var filter = $(this).prop("id");
 			var camera = $("#code").val();
 			loadAsync("./removeFilterToCamera.sh?camera="+camera+"&filter="+filter,function(){
 				console.log("Saved "+filter);
