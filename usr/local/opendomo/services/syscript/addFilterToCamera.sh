@@ -31,7 +31,7 @@ else
 	then
 		echo "#INFO No cameras were found"
 		echo "actions:"
-		echo "	configureOpenCVODOS.sh "
+		echo "	manageCameras.sh	Manage cameras"
 		echo
 		exit 0
 	fi
