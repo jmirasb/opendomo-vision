@@ -25,19 +25,18 @@ then
 	fi
 else
 	cd $CAMDIR
-	for i in *.conf; 
-	do
-	if test "$i" = "*.conf"
-	then
-		echo "#INFO No cameras were found"
-		echo "actions:"
-		echo "	manageCameras.sh	Manage cameras"
-		echo
-		exit 0
-	fi
-	source ./$i
-	ID=`basename $i | cut -f1 -d.`
-	echo "-ID:$ID	Name: Filter"
+	for i in *.conf; do
+		if test "$i" = "*.conf"
+		then
+			echo "#INFO No cameras were found"
+			echo "actions:"
+			echo "	manageCameras.sh	Manage cameras"
+			echo
+			exit 0
+		fi
+		source ./$i
+		ID=`basename $i | cut -f1 -d.`
+		echo "-ID:$ID	Name: Filter"
 	done
 	echo "Usage: $0 [ID] [Name]"
 fi
