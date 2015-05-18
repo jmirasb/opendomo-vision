@@ -15,16 +15,14 @@ CAMDIR="/etc/opendomo/control/"
 if ! test -z "$2"
 then
 	ID="$1"
-	shift
-	for filter in $*
-	do
-	if test -f $CONFIGDIR/$ID/filters/$filter.conf
+	filter="$2"
+	FILENAME="$CONFIGDIR/$ID/filters/$filter.conf"
+	if test -f $FILENAME
 	then
-		rm $CONFIGDIR/$ID/filters/$filter.conf
+		rm $FILENAME
 	else
-		echo "#INFO No filters were found, in OpenCVODOS"
+		echo "#INFO No filters were found in $FILENAME"
 	fi
-	done
 else
 	cd $CAMDIR
 	for i in *.conf; 
