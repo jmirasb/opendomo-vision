@@ -45,7 +45,7 @@ if circles is not None:
 		cv2.rectangle(output, (x - 5, y - 5), (x + 5, y + 5), (0, 128, 255), -1)
 	
 	# save log
-subprocess.call(["/usr/bin/logevent", "circle", "opencvodos", "Circle process in " + confID +  " /var/www/data/" + confID + "_circle.png"])
+	subprocess.call(["/usr/bin/logevent", "circle", "odvision", "Circle detected in " + confID +  " /var/www/data/" + confID + "_circle.png"])
 
 	# save the output image
-cv2.imwrite('/var/www/data/' + confID + '_circle.png',output)
+	cv2.imwrite('/var/www/data/' + confID + '_circle.png',output)
