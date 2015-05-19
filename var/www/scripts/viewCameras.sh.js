@@ -53,7 +53,7 @@ $(function(){
 	$("div.tools").find("button.filter").on("click",function(){
 		var id = $(this).data("id");
 		var filter = $(this).data("filtername");
-		$("#"+id+" img").prop("src","/data/" + id + "_" + filter + ".jpg");	
+		$("#"+id+" img").prop("src","/data/" + id + "_" + filter + ".png");	
 	});
 	
 	refreshCameras();
