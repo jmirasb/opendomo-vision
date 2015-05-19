@@ -62,7 +62,9 @@ do_daemon() {
 			if test $TYPE = "local"
 			then
 				# If the camera is local (USB attached) extract image
-				fswebcam -d $DEVICE -r 640x480 /var/www/data/$ID.jpg 
+				if ! fswebcam -d $DEVICE -r 640x480 /var/www/data/$ID.jpg ; then 
+					cp /var/www/images/nocam.jpeg /var/www/data/${ID}.jpg
+				fi
 				# Only for the local cameras, notify the event
 				logevent camchange odvision "Updating snapshot" /var/www/data/$ID.jpg
 			fi
@@ -73,7 +75,7 @@ do_daemon() {
 					IDF=`basename $fil | cut -f1 -d.`
 					# source ./$f
 					if ! python $FILTERSDIR/$IDF/$IDF.py $ID; then
-						cp /var/www/images/nocam.jpeg /var/www/data/${ID}_${IDF}.jpg
+						cp /var/www/images/nofilter.jpg /var/www/data/${ID}_${IDF}.jpg
 					fi
 					# no in daemon logevent $IDF opencvodos "Motion detected in $ID" 
 				done				
