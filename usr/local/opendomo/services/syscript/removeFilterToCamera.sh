@@ -9,9 +9,6 @@ DEVNAME="opencvodos"
 CONFIGDIR="/etc/opendomo/vision"
 CAMDIR="/etc/opendomo/control/"
 
-#ID="$1"
-#NAME="$2"
-	
 if ! test -z "$2"
 then
 	ID="$1"

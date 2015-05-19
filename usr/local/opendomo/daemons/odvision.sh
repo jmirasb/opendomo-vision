@@ -72,7 +72,9 @@ do_daemon() {
 				for fil in $CONFIGDIR/$ID/filters/*.conf; do
 					IDF=`basename $fil | cut -f1 -d.`
 					# source ./$f
-					python $FILTERSDIR/$IDF/$IDF.py $ID
+					if ! python $FILTERSDIR/$IDF/$IDF.py $ID; then
+						cp /var/www/images/nocam.jpeg /var/www/data/${ID}_${IDF}.jpg
+					fi
 					# no in daemon logevent $IDF opencvodos "Motion detected in $ID" 
 				done				
 			fi
