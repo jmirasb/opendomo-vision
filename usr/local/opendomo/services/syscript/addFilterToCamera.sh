@@ -18,7 +18,7 @@ then
 		FILENAME="$CONFIGDIR/$ID/filters/$filter.conf"
 		echo "[Definition]" > $FILENAME
 		echo "ID=$ID" >> $FILENAME
-		echo "NAME='$filter'" >> $FILENAME
+		echo "NAME=$filter" >> $FILENAME
 		echo "#INFO Filter created $FILENAME"
 	else
 		echo "#INFO No cameras were found, in OpenCVODOS"
