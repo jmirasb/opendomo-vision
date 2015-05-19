@@ -48,7 +48,7 @@ t = time.clock() - start
 
 if s != 0 :
   # save log
-  subprocess.call(["/bin/logevent", "motiondet", "opencvodos", "Motion detected in " + confID +  " /var/www/data/" + confID + "_motiondet.png"])
+  subprocess.call(["/usr/bin/logevent", "motiondet", "opencvodos", "Motion detected in " + confID +  " /var/www/data/" + confID + "_motiondet.png"])
   # save output image
   cv2.imwrite('/var/www/data/' + confID + '_motiondet.png',imgb)
 
