@@ -51,6 +51,6 @@ if __name__ == '__main__':
     draw_detections(img, found)
     draw_detections(img, found_filtered, 3)
     # save log
-    subprocess.call(["/usr/bin/logevent", "persons", "opencvodos", "detection of persons in " + confID +  " /var/www/data/" + confID + "_persons.png"])
+    subprocess.call(["/usr/bin/logevent", "persons", "odvision", "Person detected in " + confID +  " /var/www/data/" + confID + "_persons.png"])
     # save output image
     cv2.imwrite('/var/www/data/' + confID + '_persons.png',img)
