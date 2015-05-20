@@ -1,4 +1,5 @@
 var repositoryURL="https://github.com/jmirasb/opendomo-vision/";
+
 $("#submit-saveSettings").on("click",function(e){
 	e.preventDefault();
 	$("#manageCameras li.filter").each(function(){
@@ -21,6 +22,7 @@ $("#submit-saveSettings").on("click",function(e){
 });
 
 if (typeof loadAsync == "undefined") {
+	//TODO Remove this block on 2.2.6
 	function loadAsync(filePath, callback){
 		jQuery.ajax({
 			type : "GET",
