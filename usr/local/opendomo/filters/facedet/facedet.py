@@ -1,8 +1,8 @@
 #!/bin/python
-#desc: Face detection filter using an image
+#desc: Detect a face
 #package:opencvodos
 
-### Copyright(c) 2014 OpenDomo Services SL. Licensed under GPL v3 or later
+### Copyright(c) 2015 OpenDomo Services SL. Licensed under GPL v3 or later
 
 import sys
 import cv2

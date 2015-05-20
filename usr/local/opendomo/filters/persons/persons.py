@@ -1,8 +1,8 @@
 #!/bin/python
-#desc: Filter detection of persons using an image
+#desc: Detect a person
 #package:opencvodos
 
-### Copyright(c) 2014 OpenDomo Services SL. Licensed under GPL v3 or later
+### Copyright(c) 2015 OpenDomo Services SL. Licensed under GPL v3 or later
 import numpy as np
 import cv2
 import ConfigParser

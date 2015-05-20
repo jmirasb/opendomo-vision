@@ -1,8 +1,8 @@
 #!/bin/python
-#desc:Filter detection of circle using a image
+#desc:Detect a circle
 #package:opencvodos
 
-### Copyright(c) 2014 OpenDomo Services SL. Licensed under GPL v3 or later
+### Copyright(c) 2015 OpenDomo Services SL. Licensed under GPL v3 or later
 import cv2
 import sys
 import time
